@@ -1,5 +1,15 @@
 A start at making a First Person View Mod for Plateup (Workshop)
 
+Controls:
+
+F1: Activate
+T: Move Forward
+F: Strafe Left
+G: Move Back
+H: Strafe Right
+Mouse: Control Camera
+
+
 Current Features:
 - First Person Camera
 - Minimap Overhead
