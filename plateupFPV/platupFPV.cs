@@ -4,9 +4,14 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.Rendering;
+using UnityEngine.InputSystem.Controls;
 using System.Linq;
 using Kitchen.Modules;
+using System.Collections.Generic;
+using UnityEngine.Assertions.Must;
+using Controllers;
+using Kitchen.Layouts.Modules;
 
 namespace plateupFPV
 {
@@ -16,23 +21,31 @@ namespace plateupFPV
 
         InputAction f1Action;
         InputAction rmbAction;
-        InputAction tAction;
-        InputAction fAction;
-        InputAction gAction;
-        InputAction hAction;
+        InputAction wAction;
+        InputAction aAction;
+        InputAction sAction;
+        InputAction dAction;
         InputAction mouseMoveAction;
         Camera fpvCamera;
 
-        
+
         protected override void Initialise()
         {
+            //loop through all InputActions and find DebugLog all of them
+            foreach (var action in InputSystem.ListEnabledActions())
+            {
+                if (action.name == "Movement")
+                {
+                    action.Disable();
+                }
+            }
+
             f1Action = new InputAction("f1", binding: "<Keyboard>/f1");
             f1Action.performed += ctx =>
             {
                 GameObject player = GameObject.Find("Player(Clone)");
                 GameObject cameraObject = new GameObject("FPV Camera");
                 fpvCamera = cameraObject.AddComponent<Camera>();
-               
                 fpvCamera.transform.localPosition = new Vector3(0, 1f, 0);
                 fpvCamera.transform.parent = player.transform;
                 fpvCamera.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -49,8 +62,9 @@ namespace plateupFPV
                 skyboxMaterial.SetFloat("_AtmosphereThickness", 1f);
                 skyboxMaterial = Resources.Load<Material>("Skybox/Blue Sky");
                 RenderSettings.skybox = skyboxMaterial;
-                GameObject cameraObject2 = new GameObject("Top Down Camera");
-                Camera topDownCamera = cameraObject2.AddComponent<Camera>();
+                
+             
+                Camera topDownCamera = Camera.main;
                 topDownCamera.transform.localPosition = new Vector3(0, 10f, 0);
                 topDownCamera.transform.localRotation = Quaternion.Euler(90, 0, 0);
                 Vector3 pos2 = new Vector3(player.transform.position.x, player.transform.position.y + 10f, 0);
@@ -62,72 +76,69 @@ namespace plateupFPV
                 topDownCamera.clearFlags = CameraClearFlags.Skybox;
                 topDownCamera.backgroundColor = new Color(0.5f, 0.5f, 1f);
                 topDownCamera.farClipPlane = 3000f;
-                
+                //make TopDownCamera on top of fpvcamera
+
+                topDownCamera.depth = 1;
+
             };
             f1Action.Enable();
             
-            tAction = new InputAction("t", binding: "<Keyboard>/t");
-            tAction.Enable();
-
-            fAction = new InputAction("f", binding: "<Keyboard>/f");
-            fAction.Enable();
-
-            gAction = new InputAction("g", binding: "<Keyboard>/g");
-            gAction.Enable();
-
-            hAction = new InputAction("h", binding: "<Keyboard>/h");
-            hAction.Enable();
-
-            rmbAction = new InputAction("rmb", binding: "<Mouse>/rightButton");
-            rmbAction.Enable();
-            
+            wAction = new InputAction("w", binding: "<Keyboard>/w");
+            wAction.Enable();
+            aAction = new InputAction("a", binding: "<Keyboard>/a");
+            aAction.Enable();
+            sAction = new InputAction("s", binding: "<Keyboard>/s");
+            sAction.Enable();
+            dAction = new InputAction("d", binding: "<Keyboard>/d");
+            dAction.Enable();
             mouseMoveAction = new InputAction("MouseMove", binding: "<Mouse>/delta");
             mouseMoveAction.Enable();
 
 
-
         }
-                
-        
+
+
 
 
         protected override void OnUpdate()
         { 
-            if (tAction.ReadValue<float>() > 0)
-            {
-                GameObject player = GameObject.Find("Player(Clone)");
-                player.transform.position += player.transform.forward * 0.05f;
-            }
-            if (gAction.ReadValue<float>() > 0)
-            {
-                GameObject player = GameObject.Find("Player(Clone)");
-                player.transform.position -= player.transform.forward * 0.05f;
-            }
 
-            if (fAction.ReadValue<float>() > 0)
-            {
-                GameObject player = GameObject.Find("Player(Clone)");
-                player.transform.position -= player.transform.right * 0.05f;
-            }
-            if (hAction.ReadValue<float>() > 0)
-            {
-                GameObject player = GameObject.Find("Player(Clone)");
-                player.transform.position += player.transform.right * 0.05f;
-            }
 
             if (fpvCamera != null)
             {
-               
+                GameObject player = GameObject.Find("Player(Clone)");
+                if (wAction.ReadValue<float>() > 0)
+                {
+                    player.transform.position += player.transform.forward * 0.05f;
+                }
+                if (aAction.ReadValue<float>() > 0)
+                {
+                    player.transform.position -= player.transform.right * 0.05f;
+                   
+                }
+
+                if (sAction.ReadValue<float>() > 0)
+                {
+                    player.transform.position -= player.transform.forward * 0.05f;
+                }
+                if (dAction.ReadValue<float>() > 0)
+                {
+                    
+                    player.transform.position += player.transform.right * 0.05f;
+                }
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                
-
-                GameObject player = GameObject.Find("Player(Clone)");
                 Vector2 mouseMove = mouseMoveAction.ReadValue<Vector2>();
                 float mouseX = mouseMove.x / 2;
                 float mouseY = mouseMove.y / 4;
                 player.transform.Rotate(Vector3.up * mouseX, Space.World);
                 player.transform.Rotate(Vector3.left * mouseY, Space.Self);
+
+
+
+
+
+
 
 
 

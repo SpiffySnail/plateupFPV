@@ -126,6 +126,10 @@
       <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Unity.InputSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
