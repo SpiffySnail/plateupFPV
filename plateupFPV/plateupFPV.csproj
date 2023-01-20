@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{547A52A1-053C-4D99-95D3-D511B75B26F4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>plateupFPV</RootNamespace>
+    <AssemblyName>plateupFPV</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\OneDrive\Desktop\Plateup\Mods\FPV\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="platupFPV.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Controllers, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Controllers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Kitchen.Common, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Kitchen.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Kitchen.FranchiseBuilderMode, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Kitchen.FranchiseBuilderMode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Kitchen.FranchiseMode, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Kitchen.FranchiseMode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Kitchen.GameData, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Kitchen.GameData.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Kitchen.Layouts, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Kitchen.Layouts.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Kitchen.Networking, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Kitchen.Networking.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Kitchen.Persistence, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Kitchen.Persistence.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Kitchen.PostgameMode, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Kitchen.PostgameMode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Kitchen.ResearchMode, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Kitchen.ResearchMode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Kitchen.RestaurantMode, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Kitchen.RestaurantMode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Kitchen.TutorialMode, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Kitchen.TutorialMode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="KitchenMode, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\KitchenMode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="KitchenMods, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\KitchenMods.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="Unity.Collections.LowLevel.ILSupport, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Entities, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Unity.Entities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.InputSystem, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\Unity.InputSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Desktop\PlateUp.v1.1.2\PlateUp_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
