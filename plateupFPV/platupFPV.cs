@@ -20,7 +20,8 @@ namespace plateupFPV
 
 
         InputAction f1Action;
-        InputAction rmbAction;
+        InputAction lftStick;
+        InputAction rgtStick;
         InputAction wAction;
         InputAction aAction;
         InputAction sAction;
@@ -72,7 +73,7 @@ namespace plateupFPV
                 topDownCamera.transform.SetPositionAndRotation(pos2, Quaternion.Euler(rot));
                 topDownCamera.fieldOfView = 60;
                 topDownCamera.nearClipPlane = 0.3f;
-                topDownCamera.rect = new Rect(0.75f, 0.75f, 0.25f, 0.25f);
+                topDownCamera.rect = new Rect(0.75f, 0.75f, 0.333f, 0.333f);
                 topDownCamera.clearFlags = CameraClearFlags.Skybox;
                 topDownCamera.backgroundColor = new Color(0.5f, 0.5f, 1f);
                 topDownCamera.farClipPlane = 3000f;
@@ -91,8 +92,17 @@ namespace plateupFPV
             sAction.Enable();
             dAction = new InputAction("d", binding: "<Keyboard>/d");
             dAction.Enable();
+            
             mouseMoveAction = new InputAction("MouseMove", binding: "<Mouse>/delta");
             mouseMoveAction.Enable();
+
+            lftStick = new InputAction("LeftStick", binding: "<Gamepad>/leftStick");
+            lftStick.Enable();
+
+            rgtStick = new InputAction("RightStick", binding: "<Gamepad>/rightStick");
+            rgtStick.Enable();
+
+
 
 
         }
@@ -107,6 +117,32 @@ namespace plateupFPV
             if (fpvCamera != null)
             {
                 GameObject player = GameObject.Find("Player(Clone)");
+                if (lftStick.ReadValue<Vector2>().y > 0.1f)
+                {
+                    player.transform.Translate(Vector3.forward * 0.05f);
+                }
+                if (lftStick.ReadValue<Vector2>().y < -0.1f)
+                {
+                    player.transform.Translate(Vector3.back * 0.05f);
+                }
+                if (lftStick.ReadValue<Vector2>().x > 0.1f)
+                {
+                    player.transform.Translate(Vector3.right * 0.025f);
+                }
+                if (lftStick.ReadValue<Vector2>().x < -0.1f)
+                {
+                    player.transform.Translate(Vector3.left * 0.025f);
+                }
+
+
+                if (rgtStick.ReadValue<Vector2>().x != 0 || rgtStick.ReadValue<Vector2>().y != 0)
+                {
+                    float x = rgtStick.ReadValue<Vector2>().x * 2f;
+                    float y = rgtStick.ReadValue<Vector2>().y * -2f;
+                    player.transform.Rotate(new Vector3(0, x, 0));
+                    fpvCamera.transform.Rotate(new Vector3(y, 0, 0));
+                }
+
                 if (wAction.ReadValue<float>() > 0)
                 {
                     player.transform.position += player.transform.forward * 0.05f;
@@ -130,16 +166,9 @@ namespace plateupFPV
                 Cursor.visible = false;
                 Vector2 mouseMove = mouseMoveAction.ReadValue<Vector2>();
                 float mouseX = mouseMove.x / 2;
-                float mouseY = mouseMove.y / 4;
-                player.transform.Rotate(Vector3.up * mouseX, Space.World);
-                player.transform.Rotate(Vector3.left * mouseY, Space.Self);
-
-
-
-
-
-
-
+                float mouseY = (mouseMove.y / 4) * -1;
+                player.transform.Rotate(new Vector3(0, mouseX, 0));
+                fpvCamera.transform.Rotate(new Vector3(mouseY, 0, 0));
 
 
 
