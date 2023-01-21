@@ -13,7 +13,7 @@ Mouse: Control Camera
 Current Features:
 - First Person Camera
 - Minimap Overhead
-- TFGH FPS style movement
+- WASD FPS style movement
 - Mouse input for camera movement
 
 
