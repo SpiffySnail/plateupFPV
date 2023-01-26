@@ -110,6 +110,8 @@ namespace plateupFPV
             lftStick.Enable();
             rgtStick = new InputAction("RightStick", binding: "<Gamepad>/rightStick");
             rgtStick.Enable();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         void disableFPV()
@@ -177,8 +179,6 @@ namespace plateupFPV
 
                     player.transform.position += player.transform.right * 0.033f;
                 }
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
                 Vector2 mouseMove = mouseMoveAction.ReadValue<Vector2>();
                 float mouseX = mouseMove.x / 4;
                 float mouseY = (mouseMove.y / 8) * -1;
