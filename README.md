@@ -21,4 +21,4 @@ Current Features:
 
 Issues:
 - Camera needs to be clamped
-
+- Multiplayer doesn't work as camera is shared by all :(
