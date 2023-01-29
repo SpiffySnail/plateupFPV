@@ -32,32 +32,25 @@ namespace plateupFPV
         Camera fpvCamera;
         Camera topDownCamera;
         List<InputAction> movementAndLookActions = new List<InputAction>();
-
+        CPlayer cplayer;
+        GameObject player;
         protected override void Initialise()
         {
-            foreach (var action in InputSystem.ListEnabledActions())
-            {
-                if (action.name == "Movement" || action.name == "Look")
-                {
-                    movementAndLookActions.Add(action);
-                }
-            }
-            f1Action = new InputAction("f1", binding: "<Keyboard>/f1");
-            f1Action.performed += ctx =>
-            {
-                if (!isFPV)
-                {
-                    enableFPV();
-                    isFPV = true;
-                }
-                else
-                {
-                    disableFPV();
-                    isFPV = false;
-                }
-            };
-            f1Action.Enable();
+
         }
+ 
+        
+  
+        protected override void OnUpdate()
+        {
+            
+        }
+        
+        
+
+
+
+        
         void enableFPV()
         {
             GameObject player = GameObject.Find("Player(Clone)");
@@ -130,80 +123,6 @@ namespace plateupFPV
             }
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        }
-        
-
-        protected override void OnUpdate()
-        {
-            if (fpvCamera != null)
-            {
-                GameObject player = GameObject.Find("Player(Clone)");
-                if (lftStick.ReadValue<Vector2>().y > 0.1f)
-                {
-                    player.transform.Translate(Vector3.forward * 0.05f);
-                }
-                if (lftStick.ReadValue<Vector2>().y < -0.1f)
-                {
-                    player.transform.Translate(Vector3.back * 0.05f);
-                }
-                if (lftStick.ReadValue<Vector2>().x > 0.1f)
-                {
-                    player.transform.Translate(Vector3.right * 0.025f);
-                }
-                if (lftStick.ReadValue<Vector2>().x < -0.1f)
-                {
-                    player.transform.Translate(Vector3.left * 0.025f);
-                }
-                if (rgtStick.ReadValue<Vector2>().x != 0 || rgtStick.ReadValue<Vector2>().y != 0)
-                {
-                    float x = rgtStick.ReadValue<Vector2>().x * 2f;
-                    float y = rgtStick.ReadValue<Vector2>().y * -2f;
-                    player.transform.Rotate(new Vector3(0, x, 0));
-                    fpvCamera.transform.Rotate(new Vector3(y, 0, 0));
-                }
-                if (wAction.ReadValue<float>() > 0)
-                {
-                    player.transform.position += player.transform.forward * 0.05f;
-                }
-                if (aAction.ReadValue<float>() > 0)
-                {
-                    player.transform.position -= player.transform.right * 0.033f;
-
-                }
-                if (sAction.ReadValue<float>() > 0)
-                {
-                    player.transform.position -= player.transform.forward * 0.05f;
-                }
-                if (dAction.ReadValue<float>() > 0)
-                {
-
-                    player.transform.position += player.transform.right * 0.033f;
-                }
-                Vector2 mouseMove = mouseMoveAction.ReadValue<Vector2>();
-                float mouseX = mouseMove.x / 4;
-                float mouseY = (mouseMove.y / 8) * -1;
-                player.transform.Rotate(new Vector3(0, mouseX, 0));
-                fpvCamera.transform.Rotate(new Vector3(mouseY, 0, 0));
-            }
-            GameObject generic = GameObject.Find("Generic Choice Popup(Clone)");
-            GameObject pause = GameObject.Find("Player Pause Popup");
-            if (pause.transform.GetChild(0).gameObject.activeSelf)
-            {
-                isPopup = true;
-                disableFPV();
-
-            }
-            else
-            {
-                isPopup = false;
-            }
-            if (!isPopup && isFPV)
-            {
-                if (topDownCamera.rect == new Rect(0, 0, 1, 1))
-                {
-                    enableFPV();
-                }
-            }
         }
     }
 }
